@@ -4,6 +4,7 @@ import six
 import collections
 from datetime import date, time, datetime
 
+
 try:
     from enum import EnumMeta, Enum
 except ImportError:
@@ -210,3 +211,6 @@ def primitive_type(schema):
     else:
         return None
 
+
+def join(iterable):
+    return _(u',').join((six.text_type(i) for i in iterable))

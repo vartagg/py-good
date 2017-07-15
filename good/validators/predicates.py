@@ -1,5 +1,7 @@
-from .. import Schema, Invalid, MultipleInvalid, Required, Optional
+
 from .base import ValidatorBase
+from .. import Schema, Invalid, MultipleInvalid, Required, Optional
+from good.schema.util import join
 from ..schema.util import get_literal_name, const
 
 
@@ -237,7 +239,7 @@ class Inclusive(ValidatorBase):
 
     def __init__(self, *keys):
         self.keys = set(keys)
-        self.name = _(u'Inclusive({})').format(_(u',').join(keys))
+        self.name = _(u'Inclusive({})').format(join(keys))
 
     def __call__(self, d):
         # Check which keys are missing in the input mapping
@@ -330,7 +332,7 @@ class Exclusive(ValidatorBase):
 
         # Name
         self.keys = set(keys)
-        self.name = _(u'Exclusive({})').format(_(u',').join(sorted(self.keys)))
+        self.name = _(u'Exclusive({})').format(join(sorted(self.keys)))
 
     def __call__(self, d):
         # Check which of the keys are provided
@@ -350,7 +352,7 @@ class Exclusive(ValidatorBase):
             return d
 
         # Multiple used
-        raise Invalid(_(u'Choose one of the options, not multiple'), provided=_(u',').join(sorted(provided_keys)))
+        raise Invalid(_(u'Choose one of the options, not multiple'), provided=join(sorted(provided_keys)))
 
 
 
