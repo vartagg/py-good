@@ -1042,7 +1042,7 @@ class ValuesTest(GoodTestBase):
 
     def test_In(self):
         """ Test In() """
-        allowed = In({1,2,3})
+        allowed = In([1,2,3])
         schema = Schema(allowed)
 
         self.assertValid(schema, 1)
